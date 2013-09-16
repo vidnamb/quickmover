@@ -8,13 +8,15 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version 1.9.3
+* Ruby version: 1.9.3
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+
+    Database migrations under db/migrations used to incrementally build database.
 
 * Database initialization
 
