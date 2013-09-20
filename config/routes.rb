@@ -2,9 +2,6 @@ Quickmover::Application.routes.draw do
 
   resources :users
 
-  get "users/new"
-  get "quick_mover/home"
-
   root  'quick_mover#home'
   match '/signup',  to: 'users#new',            via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
