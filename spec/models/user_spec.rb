@@ -113,4 +113,20 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
+
+  describe "order associations" do
+
+    before { @user.save }
+    let!(:older_order) do
+      FactoryGirl.create(:order, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_order) do
+      FactoryGirl.create(ordert, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right microposts in the right order" do
+      expect(@user.orders.to_a).to eq [newer_order, older_order]
+    end
+  end
+
 end

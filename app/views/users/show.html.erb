@@ -1,19 +1,63 @@
+<%= flash[:message] %>
 <% provide(:title, @user.name) %>
+<h1><%= "Welcome #{@user.name}!"%></h1>
+
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @user.name %>
-      </h1>
-      <h1>
-        <%= @user.email %>
-      </h1>
-      <h1>
-        <%= @user.phone_number %>
-      </h1>
-      <h1>
-        <%= @user.location %>
-      </h1>
-    </section>
-  </aside>
+  <div class="span6 offset3">
+    <h4><%= "Email:  #{@user.email}"%></h4>
+  </div>
+  <div class="span6 offset3">
+    <h4><%= "Phone:  #{@user.phone_number}"%></h4>
+  </div>
+  <div class="span6 offset3">
+    <h4><%= "Location:  #{@user.location}"%></h4>
+  </div>
+
+  <p>
+
+  <br>
+  <br/>
+  <br>
+  <br/>
+  <br>
+  <br/>
+
+  <div class="span10 offset1">
+      <h3><%= "My order history"%></h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Shipping Date</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @user.orders.each do |order| %>
+           <tr>
+             <td><%= order.source_location %></td>
+             <td><%= order.destination %></td>
+             <td><%= order.shipping_date %></td>
+             <td><%= order.short_description %></td>
+             <td><%= link_to 'Show', order %></td>
+             <td><%= link_to 'Edit', edit_order_path(order) %></td>
+
+
+             <td><%= link_to 'Delete', order, method: :delete,
+                             data: { confirm: 'Are you sure?'}, :remote => true, :class => 'delete_order'%> </td>
+           </tr>
+        <% end %>
+      </table>
+  </div>
+
+  <div class="span6 offset3">
+    <%= link_to 'Browse All Orders', allorders_path, method: :get, class: "btn btn-large btn-primary" %>
+    <%= link_to 'Create a new Order', neworder_path, method: :get, class: "btn btn-large btn-primary" %>
+  </div>
+
+</p>
 </div>
+
+

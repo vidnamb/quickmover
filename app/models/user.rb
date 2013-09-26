@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :orders
+
   before_save { self.email = email.downcase }            #email should be lowercase before saving to db
 
   validates :name, presence: true

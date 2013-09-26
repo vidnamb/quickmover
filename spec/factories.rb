@@ -7,4 +7,13 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
   end
+
+  factory :order do
+    source_location "Walmart, Freeport Road"
+    destination "5th Avenue"
+    shipping_date "26092013"
+    short_description "One twin bed frame"
+    user
+  end
+
 end

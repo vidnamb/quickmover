@@ -2,11 +2,19 @@ Quickmover::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :orders
 
   root  'quick_mover#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+
+  match '/neworder', to: 'orders#new',     via: 'get'
+  match '/allorders', to: 'orders#index',     via: 'get'
+
+  match '/alluserorders', to: 'orders#getallorders', via:'get'
+  match '/refreshcount', to: 'users#getordercount', via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
